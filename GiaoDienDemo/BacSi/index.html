@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hệ Thống Quản Lý Bác Sĩ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #006d77;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav {
+            background: #83c5be;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        nav a.active {
+            text-decoration: underline;
+        }
+
+        section {
+            display: none;
+            padding: 2rem;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        .card {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label,
+        input,
+        select,
+        textarea {
+            display: block;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 0.5rem;
+        }
+
+        button {
+            background-color: #006d77;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Hệ Thống Quản Lý Bác Sĩ</h1>
+    </header>
+    <nav>
+        <a onclick="showSection(event, 'taikhoan')" class="active">Tài Khoản</a>
+        <a onclick="showSection(event, 'lichlamviec')">Lịch Làm Việc</a>
+        <a onclick="showSection(event, 'lichhen')">Lịch Hẹn</a>
+        <a onclick="showSection(event, 'benhnhan')">Cập Nhật Bệnh Nhân</a>
+        <a onclick="showSection(event, 'ketquakham')">Kết Quả Khám</a>
+    </nav>
+
+    <section id="taikhoan" class="active">
+        <div class="card">
+            <h2>Thông Tin Tài Khoản</h2>
+            <p>Họ tên: BS. Trần Văn B</p>
+            <p>Chuyên khoa: Nội tổng hợp</p>
+            <p>Email: bs.b@benhvien.com</p>
+            <p>SĐT: 0987654321</p>
+            <button onclick="showSection(event, 'chinhsuataikhoan')">Chỉnh Sửa</button>
+
+        </div>
+    </section>
+    <section id="chinhsuataikhoan">
+  <div class="card">
+    <h2>Chỉnh Sửa Tài Khoản</h2>
+    <label>Họ tên:</label>
+    <input type="text" value="BS. Trần Văn B">
+    
+    <label>Chuyên khoa:</label>
+    <input type="text" value="Nội tổng hợp">
+    
+    <label>Email:</label>
+    <input type="email" value="bs.b@benhvien.com">
+    
+    <label>SĐT:</label>
+    <input type="tel" value="0987654321">
+    
+    <button>Lưu Thay Đổi</button>
+    <button onclick="showSection(event, 'taikhoan')">Quay Lại</button>
+  </div>
+</section>
+
+    <section id="lichlamviec">
+        <div class="card">
+            <h2>Tạo Mới Lịch Làm Việc</h2>
+            <label>Chọn ngày:</label>
+            <input type="date">
+            <label>Giờ bắt đầu:</label>
+            <input type="time">
+            <label>Giờ kết thúc:</label>
+            <input type="time">
+            <button>Tạo Lịch</button>
+        </div>
+
+        <div class="card">
+            <h2>Xóa Lịch Làm Việc</h2>
+            <label>Chọn lịch muốn xóa:</label>
+            <select>
+                <option>20/05/2025 - 08:00-12:00</option>
+            </select>
+            <button>Xóa</button>
+        </div>
+
+        <div class="card">
+            <h2>Danh Sách Lịch Hẹn</h2>
+            <ul>
+                <li>21/05/2025 - 10:00 - Bệnh nhân: Nguyễn Văn A</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="lichhen">
+        <div class="card">
+            <h2>Quản Lý Lịch Hẹn</h2>
+            <label>Lịch chờ xác nhận:</label>
+            <select multiple>
+                <option>22/05/2025 - 09:00 - BN: Trần Thị C - NS: 01/01/1990</option>
+                <option>22/05/2025 - 10:00 - BN: Lê Văn E - NS: 15/03/1985</option>
+                <option>22/05/2025 - 11:00 - BN: Phạm Thị F - NS: 20/12/1992</option>
+            </select>
+            <label>Lý do từ chối (nếu có):</label>
+            <textarea placeholder="Nhập lý do từ chối..." rows="3"></textarea>
+            <button>Xác Nhận</button>
+            <button>Gửi Thông Báo</button>
+            <button>Từ Chối</button>
+        </div>
+    </section>
+
+    <section id="benhnhan">
+        <div class="card">
+            <h2>Cập Nhật Thông Tin Bệnh Nhân</h2>
+            <label>Chọn bệnh nhân:</label>
+            <select>
+                <option>Nguyễn Văn A - NS: 12/12/1980</option>
+                <option>Trần Thị B - NS: 22/03/1991</option>
+                <option>Phạm Văn C - NS: 05/07/1985</option>
+            </select>
+            <label>Chỉ định điều trị tiếp theo:</label>
+            <textarea></textarea>
+            <label>Chuẩn đoán:</label>
+            <textarea></textarea>
+            <label>Kết quả xét nghiệm:</label>
+            <textarea></textarea>
+            <button>Cập Nhật</button>
+        </div>
+    </section>
+
+    <section id="ketquakham">
+        <div class="card">
+            <h2>Kết Quả Khám Bệnh</h2>
+            <label>Nhập kết quả:</label>
+            <textarea></textarea>
+            <button>Lưu</button>
+            <label>Chỉnh sửa kết quả trước:</label>
+            <select>
+                <option>12/05/2025 - BN: Trần Văn D</option>
+            </select>
+            <textarea></textarea>
+            <button>Cập Nhật</button>
+            <h3>Lịch Sử Kết Quả</h3>
+            <ul>
+                <li>10/04/2025 - BN: Trần Văn D - Kết quả: Viêm họng cấp</li>
+            </ul>
+        </div>
+    </section>
+
+    <script>
+        function showSection(event, id) {
+            const sections = document.querySelectorAll('section');
+            const links = document.querySelectorAll('nav a');
+            sections.forEach(section => section.classList.remove('active'));
+            links.forEach(link => link.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

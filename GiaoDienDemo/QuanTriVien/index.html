@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hệ thống Quản trị viên</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; }
+    header { background: #003366; color: white; padding: 1rem; text-align: center; }
+    nav { background: #005580; display: flex; flex-wrap: wrap; justify-content: space-around; padding: 1rem; }
+    nav a { color: white; font-weight: bold; cursor: pointer; margin: 0.5rem; text-decoration: none; }
+    nav a.active { text-decoration: underline; }
+    section { display: none; padding: 1.5rem; }
+    section.active { display: block; }
+    .card { background: white; padding: 1rem; margin-bottom: 1rem; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    label, input, select, textarea { display: block; margin-top: 0.5rem; margin-bottom: 1rem; width: 100%; }
+    input, select, textarea { padding: 0.5rem; }
+    button { background: #005580; color: white; padding: 0.5rem 1rem; border: none; border-radius: 5px; cursor: pointer; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
+    th { background-color: #e0f0ff; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Trang Quản Trị Hệ Thống</h1>
+  </header>
+  <nav>
+    <a onclick="showSectiont('taikhoan')">Tài khoản</a>
+    <a onclick="showSection('benhnhan')" class="active">Hồ sơ Bệnh nhân</a>
+    <a onclick="showSection('bacsi')">Hồ sơ Bác sĩ</a>
+    <a onclick="showSection('lichhen')">Lịch hẹn</a>
+    <a onclick="showSection('danhgia')">Đánh giá</a>
+    <a onclick="showSection('chiphi')">Chi phí</a>
+    <a onclick="showSection('thongbao')">Thông báo</a>
+    <a onclick="showSection('thongke')">Thống kê</a>
+  </nav>
+
+  <section id="taikhoan">
+  <div class="card">
+    <h2>Thông tin tài khoản quản trị</h2>
+    <label>Họ tên:</label>
+    <input type="text" value="Admin Hệ thống" readonly>
+
+    <label>Email:</label>
+    <input type="email" value="admin@clinic.vn" readonly>
+
+    <label>Tên đăng nhập:</label>
+    <input type="text" value="admin123" readonly>
+
+    <label>Mật khẩu:</label>
+    <input type="password" value="********" readonly>
+
+    <button onclick="alert('Chức năng thay đổi thông tin sẽ được cập nhật sau')">Thay đổi thông tin</button>
+  </div>
+</section>
+
+
+  <section id="benhnhan" class="active">
+    <div class="card">
+      <h2>Quản lý Hồ sơ Bệnh nhân</h2>
+      <input type="text" placeholder="Tìm kiếm bệnh nhân...">
+      <table>
+        <thead>
+          <tr><th>Tên</th><th>Năm sinh</th><th>CCCD</th><th>Trạng thái</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Nguyễn Văn A</td><td>1990</td><td>123456789</td><td>Đã đặt lịch</td></tr>
+          <tr><td>Lê Thị B</td><td>1985</td><td>234567891</td><td>Chưa đặt lịch</td></tr>
+          <tr><td>Phạm Văn C</td><td>1992</td><td>345678912</td><td>Đã đặt lịch</td></tr>
+          <tr><td>Trần Thị D</td><td>1996</td><td>456789123</td><td>Đã đặt lịch</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="bacsi">
+    <div class="card">
+      <h2>Hồ sơ Bác sĩ</h2>
+      <input type="text" placeholder="Tìm kiếm bác sĩ...">
+      <table>
+        <thead>
+          <tr><th>Tên</th><th>Chuyên khoa</th><th>Thời gian làm việc</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>BS. Trần Văn C</td><td>Nội khoa</td><td>Thứ 2-6, 8h-16h</td></tr>
+          <tr><td>BS. Nguyễn Thị D</td><td>Nhi khoa</td><td>Thứ 3-7, 9h-17h</td></tr>
+          <tr><td>BS. Lê Văn E</td><td>Tim mạch</td><td>Thứ 2-6, 7h30-15h30</td></tr>
+          <tr><td>BS. Vũ Thị F</td><td>Da liễu</td><td>Thứ 4-6, 10h-18h</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="lichhen">
+    <div class="card">
+      <h2>Danh sách Lịch hẹn</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Bệnh nhân</th><th>NS</th><th>CCCD</th><th>Bác sĩ</th><th>Ngày giờ</th><th>Phòng</th><th>Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Nguyễn Văn A</td><td>1990</td><td>123456789</td><td>BS. C</td><td>20/05 09:00</td><td>101</td><td>Đã xác nhận</td></tr>
+          <tr><td>Phạm Văn C</td><td>1992</td><td>345678912</td><td>BS. D</td><td>21/05 10:30</td><td>102</td><td>Đã khám</td></tr>
+          <tr><td>Trần Thị D</td><td>1996</td><td>456789123</td><td>BS. E</td><td>22/05 14:00</td><td>103</td><td>Hủy</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="danhgia">
+    <div class="card">
+      <h2>Quản lý Đánh giá</h2>
+      <table>
+        <thead>
+          <tr><th>Bệnh nhân</th><th>Ngày</th><th>Bác sĩ</th><th>Điểm</th><th>Phản hồi</th><th>Trạng thái</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Ẩn danh</td><td>19/05</td><td>BS. C</td><td>4 sao</td><td>Rất tốt</td><td>Chưa đọc</td></tr>
+          <tr><td>Nguyễn Văn A</td><td>18/05</td><td>BS. D</td><td>5 sao</td><td>Rất hài lòng</td><td>Đã xử lý</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="chiphi">
+    <div class="card">
+      <h2>Chi phí khám</h2>
+      <table>
+        <thead>
+          <tr><th>Bệnh nhân</th><th>NS</th><th>CCCD</th><th>Bác sĩ</th><th>Ngày</th><th>Dịch vụ</th><th>Tổng</th><th>Trạng thái</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Lê Văn B</td><td>1988</td><td>987654321</td><td>BS. D</td><td>18/05</td><td>Khám tổng quát</td><td>500.000đ</td><td>Đã thanh toán</td></tr>
+          <tr><td>Phạm Văn C</td><td>1992</td><td>345678912</td><td>BS. E</td><td>19/05</td><td>Khám chuyên khoa</td><td>800.000đ</td><td>Chưa thanh toán</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="thongbao">
+    <div class="card">
+      <h2>Thông báo & Nhắc lịch</h2>
+      <p>Gửi qua Email, SMS hoặc thông báo trên web</p>
+<div>
+  <label><input type="radio" name="notifyMethod" value="email" checked> Email</label>
+  <label><input type="radio" name="notifyMethod" value="sms"> SMS</label>
+  <label><input type="radio" name="notifyMethod" value="web"> Thông báo trên Web</label>
+</div>
+      <label>Chọn bệnh nhân:</label>
+      <select>
+
+        <option>Nguyễn Văn A</option>
+        <option>Phạm Văn C</option>
+        <option>Trần Thị D</option>
+      </select>
+
+      <label>Nội dung:</label>
+      <textarea></textarea>
+      <button>Gửi thông báo</button>
+    </div>
+  </section>
+
+  <section id="thongke">
+    <div class="card">
+      <h2>Thống kê & Báo cáo</h2>
+      <ul>
+        <li>Số lượt khám hôm nay: 10</li>
+        <li>Tỷ lệ bệnh nhân vắng mặt: 5%</li>
+        <li>Doanh thu hôm nay: 5.000.000đ</li>
+        <li>Số phản hồi tích cực: 8</li>
+      </ul>
+    </div>
+  </section>
+
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll('section');
+      const links = document.querySelectorAll('nav a');
+      sections.forEach(s => s.classList.remove('active'));
+      links.forEach(l => l.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function showSectiont(id, element) {
+  const sections = document.querySelectorAll('section');
+  const links = document.querySelectorAll('nav a');
+  sections.forEach(s => s.classList.remove('active'));
+  links.forEach(l => l.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  element.classList.add('active');
+}
+
+  </script>
+</body>
+</html>

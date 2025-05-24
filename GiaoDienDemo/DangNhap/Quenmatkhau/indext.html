@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quên Mật Khẩu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .forgot-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 350px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #003366;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+      color: #003366;
+    }
+    input, select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.25rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      margin-top: 1.5rem;
+      padding: 0.7rem;
+      background-color: #005580;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .hidden {
+      display: none;
+    }
+    .back-login {
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .back-login a {
+      color: #005580;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="forgot-container">
+    <h2>Quên Mật Khẩu</h2>
+
+    <div id="step1">
+      <label for="userType">Chọn loại tài khoản:</label>
+      <select id="userType" onchange="toggleFields()">
+        <option value="benhnhan">Bệnh nhân</option>
+        <option value="bacsi">Bác sĩ</option>
+        <option value="quantri">Quản trị viên</option>
+      </select>
+
+      <label for="username">Email:</label>
+      <input type="text" id="username" placeholder="Nhập email" />
+
+      <div id="bacsiCodeField" class="hidden">
+        <label for="bacsiCode">Mã số thẻ Bác sĩ:</label>
+        <input type="text" id="bacsiCode" placeholder="Nhập mã số thẻ Bác sĩ" />
+      </div>
+
+      <div id="quantriCodeField" class="hidden">
+        <label for="quantriCode">Mã quản trị viên:</label>
+        <input type="text" id="quantriCode" placeholder="Nhập mã quản trị viên" />
+      </div>
+
+      <button type="button" onclick="sendRequest()">Gửi yêu cầu</button>
+    </div>
+
+    <div id="step2" class="hidden">
+      <label for="otpCode">Nhập mã OTP đã gửi:</label>
+      <input type="text" id="otpCode" placeholder="Nhập mã OTP" maxlength="6" />
+      <button type="button" onclick="verifyOTP()">Xác nhận OTP</button>
+    </div>
+
+    <div class="back-login">
+      <a href="login.html">Quay lại đăng nhập</a>
+    </div>
+  </div>
+
+  <script>
+    function toggleFields() {
+      const userType = document.getElementById('userType').value;
+      document.getElementById('bacsiCodeField').classList.add('hidden');
+      document.getElementById('quantriCodeField').classList.add('hidden');
+
+      if (userType === 'bacsi') {
+        document.getElementById('bacsiCodeField').classList.remove('hidden');
+      } else if (userType === 'quantri') {
+        document.getElementById('quantriCodeField').classList.remove('hidden');
+      }
+    }
+
+    function sendRequest() {
+      const userType = document.getElementById('userType').value;
+      const username = document.getElementById('username').value.trim();
+
+      if (!username) {
+        alert('Vui lòng nhập tên đăng nhập');
+        return;
+      }
+
+      if (userType === 'bacsi') {
+        const bacsiCode = document.getElementById('bacsiCode').value.trim();
+        if (!bacsiCode) {
+          alert('Vui lòng nhập mã số thẻ Bác sĩ');
+          return;
+        }
+      }
+
+      if (userType === 'quantri') {
+        const quantriCode = document.getElementById('quantriCode').value.trim();
+        if (!quantriCode) {
+          alert('Vui lòng nhập mã quản trị viên');
+          return;
+        }
+      }
+
+      // Ở đây thực tế sẽ gửi yêu cầu lấy OTP qua server
+      alert('Mã OTP đã được gửi đến email hoặc số điện thoại của bạn.');
+
+      // Ẩn bước 1, hiện bước 2 nhập OTP
+      document.getElementById('step1').classList.add('hidden');
+      document.getElementById('step2').classList.remove('hidden');
+    }
+
+    function verifyOTP() {
+      const otp = document.getElementById('otpCode').value.trim();
+
+      if (otp.length !== 6 || isNaN(otp)) {
+        alert('Vui lòng nhập đúng mã OTP gồm 6 chữ số.');
+        return;
+      }
+
+      // Ở đây thực tế sẽ xác thực OTP với server
+      alert('Xác nhận OTP thành công! Bạn có thể đặt lại mật khẩu.');
+
+      // Có thể thêm bước đặt mật khẩu mới hoặc chuyển hướng
+    }
+
+    toggleFields();
+  </script>
+</body>
+</html>

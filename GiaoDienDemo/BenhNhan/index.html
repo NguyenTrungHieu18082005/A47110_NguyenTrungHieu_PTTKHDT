@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hệ Thống Quản Lý Bệnh Nhân</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f1f1f1;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #2b7a78;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav {
+      background: #3aafa9;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    nav a.active {
+      text-decoration: underline;
+    }
+    section {
+      padding: 2rem;
+      display: none;
+    }
+    section.active {
+      display: block;
+    }
+    .card {
+      background: white;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    label, input, select, textarea {
+      display: block;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    input, select, textarea {
+      padding: 0.5rem;
+    }
+    button {
+      background-color: #2b7a78;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hệ Thống Đặt Lịch Khám Bệnh</h1>
+  </header>
+  <nav>
+    <a onclick="showSection('taikhoan')" class="active">Tài Khoản</a>
+    <a onclick="showSection('datlich')">Đặt Lịch Khám</a>
+    <a onclick="showSection('lichsu')">Lịch Sử Bệnh</a>
+    <a onclick="showSection('thaydoi')">Hủy/Thay Đổi Lịch</a>
+    <a onclick="showSection('thongbao')">Thông Báo</a>
+  </nav>
+
+  <section id="taikhoan" class="active">
+    <div class="card">
+      <h2>Thông Tin Tài Khoản</h2>
+      <p>Họ tên: Nguyễn Văn A</p>
+      <p>Ngày sinh: 12/05/1990</p>
+      <p>Giới tính: Nam</p>
+      <p>SĐT: 0912345678</p>
+      <p>Email: nguyenvana@gmail.com</p>
+      <p>Địa chỉ: 123 Đường ABC, Hà Nội</p>
+       <button onclick="showSection('chinhsua')">Chỉnh Sửa</button>
+    </div>
+  </section>
+
+  <section id="chinhsua">
+  <div class="card">
+    <h2>Chỉnh Sửa Thông Tin Cá Nhân</h2>
+    <label>Họ tên:</label>
+    <input type="text" value="Nguyễn Văn A" />
+    <label>Ngày sinh:</label>
+    <input type="date" value="1990-05-12" />
+    <label>Giới tính:</label>
+    <select>
+      <option selected>Nam</option>
+      <option>Nữ</option>
+      <option>Khác</option>
+    </select>
+    <label>Số điện thoại:</label>
+    <input type="tel" value="0912345678" />
+    <label>Email:</label>
+    <input type="email" value="nguyenvana@gmail.com" />
+    <label>Địa chỉ:</label>
+    <input type="text" value="123 Đường ABC, Hà Nội" />
+    <button>Lưu Thay Đổi</button>
+    <button onclick="showSection('taikhoan')">Hủy</button>
+  </div>
+</section>
+  <section id="datlich">
+    <div class="card">
+      <h2>Tạo Lịch Hẹn</h2>
+      <label>Chuyên khoa:</label>
+      <select>
+        <option>Tim mạch</option>
+        <option>Nội tổng hợp</option>
+        <option>Nhi khoa</option>
+      </select>
+      <label>Bác sĩ:</label>
+      <select>
+        <option>BS. Trần Thị B</option>
+        <option>BS. Lê Văn C</option>
+      </select>
+      <label>Ngày hẹn:</label>
+      <input type="date" />
+      <label>Giờ hẹn:</label>
+      <input type="time" />
+      <button onclick="datLich()">Đặt Lịch</button>
+    </div>
+
+    <div class="card">
+      <h2>Xem Lịch Trống Của Bác Sĩ</h2>
+      <label>Chọn bác sĩ:</label>
+      <select>
+        <option>BS. Trần Thị B</option>
+        <option>BS. Lê Văn C</option>
+      </select>
+      <label>Ngày muốn xem:</label>
+      <input type="date" />
+<button onclick="showSection1('lichtrong')">Xem Lịch Trống</button>
+    </div>
+
+    <div class="card">
+      <h2>Danh Sách Lịch Hẹn</h2>
+      <ul>
+        <li>12/06/2025 - 09:00 - BS. Trần Thị B</li>
+        <li>25/06/2025 - 14:00 - BS. Lê Văn C</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="lichsu">
+    <div class="card">
+      <h2>Lịch Sử Bệnh</h2>
+      <h3>Chi Tiết Hồ Sơ</h3>
+      <p>Lần khám: 12/04/2025 - Chẩn đoán: Viêm họng cấp</p>
+      <p>Đơn thuốc: Paracetamol, Cephalexin</p>
+      <p>Chi phí: 500,000 VND</p>
+      <hr />
+      <p>Lần khám: 01/03/2025 - Chẩn đoán: Cảm cúm</p>
+      <p>Đơn thuốc: Tamiflu, Vitamin C</p>
+      <p>Chi phí: 400,000 VND</p>
+    </div>
+  </section>
+
+  <section id="thaydoi">
+    <div class="card">
+      <h2>Yêu Cầu Hủy Lịch Hẹn</h2>
+      <label>Chọn lịch hẹn:</label>
+      <select>
+        <option>12/06/2025 - 09:00</option>
+        <option>25/06/2025 - 14:00</option>
+      </select>
+      <label>Lý do hủy:</label>
+      <textarea></textarea>
+      <button>Gửi Yêu Cầu Hủy</button>
+    </div>
+
+    <div class="card">
+      <h2>Yêu Cầu Thay Đổi Lịch Hẹn</h2>
+      <label>Chọn lịch hẹn cũ:</label>
+      <select>
+        <option>12/06/2025 - 09:00</option>
+      </select>
+      <label>Ngày mới:</label>
+      <input type="date" />
+      <label>Giờ mới:</label>
+      <input type="time" />
+      <button>Gửi Yêu Cầu Thay Đổi</button>
+    </div>
+  </section>
+  <section id="lichtrong">
+  <div class="card">
+    <h2>Lịch Trống Của Bác Sĩ</h2>
+    <p><strong>Bác sĩ:</strong> BS. Trần Thị B</p>
+    <p><strong>Ngày:</strong> 20/06/2025</p>
+    <ul>
+      <li>08:00 - 08:30</li>
+      <li>09:00 - 09:30</li>
+      <li>10:00 - 10:30</li>
+      <li>14:00 - 14:30</li>
+    </ul>
+    <button onclick="showSection('datlich')">Quay Lại</button>
+  </div>
+</section>
+
+<section id="thongbao">
+  <div class="card">
+    <h2>Thông Báo Đặt Lịch</h2>
+    <p id="thongbao-noidung">
+      Không có thông báo nào.
+    </p>
+    <button onclick="showSection('datlich')">Quay Lại Đặt Lịch</button>
+  </div>
+</section>
+
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll('section');
+      const links = document.querySelectorAll('nav a');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+      links.forEach(link => {
+        link.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>
+
+<script>
+  function showSection(id) {
+    const sections = document.querySelectorAll('section');
+    const links = document.querySelectorAll('nav a');
+
+    sections.forEach(section => section.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+
+    // Chỉ cập nhật class active cho nav nếu là từ thanh menu
+    if (event.target.tagName === 'A') {
+      links.forEach(link => link.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+  }
+
+  function showSection(id) {
+    const sections = document.querySelectorAll('section');
+    const links = document.querySelectorAll('nav a');
+
+    sections.forEach(section => section.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+
+    if (event && event.target.tagName === 'A') {
+      links.forEach(link => link.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+  }
+   function showSection1(id) {
+    const sections = document.querySelectorAll('section');
+    const links = document.querySelectorAll('nav a');
+
+    // Ẩn tất cả các section
+    sections.forEach(section => section.classList.remove('active'));
+
+    // Hiện section được chọn
+    const selectedSection = document.getElementById(id);
+    if (selectedSection) {
+      selectedSection.classList.add('active');
+    }
+
+    // Xử lý active cho menu nếu là nav link
+    if (event && event.target.tagName === 'A') {
+      links.forEach(link => link.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+  }
+
+  function datLich() {
+  // Mô phỏng kiểm tra thành công hay thất bại (true là thành công, false là thất bại)
+  const thanhCong = Math.random() < 0.7; // 70% thành công
+
+  const thongBaoNoiDung = document.getElementById("thongbao-noidung");
+
+  if (thanhCong) {
+    thongBaoNoiDung.innerHTML = `
+     <strong>Đặt lịch thành công!</strong><br/>
+      Vui lòng đến đúng giờ theo lịch hẹn.
+    `;
+  } else {
+    thongBaoNoiDung.innerHTML = `
+      <strong>Đặt lịch không thành công.</strong><br/>
+      Vui lòng thử lại sau.
+    `;
+  }
+
+  showSection("thongbao");
+}
+
+</script>
